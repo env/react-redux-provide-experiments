@@ -5,7 +5,7 @@
 // since all providers are given their own custom thunk middleware
 // which includes the provider API as a 3rd argument
 
-const INCREMENT = 'INCREMENT';
+const INCREMENT = 'INCREMENT'
 
 const actions = {
   increment (by = 1) {
@@ -36,4 +36,12 @@ const key = ({ props }) => props.ident
   ? `ident=${props.ident}`
   : null
 
-export default { actions, reducers, key };
+import apiReplicator from './../replicators/apiReplicator'
+
+const replication = {
+  reducerKeys: ['count'],
+  queryable: ['count'],
+  replicator: apiReplicator
+}
+
+export default { actions, reducers, key, replication }
